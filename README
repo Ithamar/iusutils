@@ -33,7 +33,7 @@ list of possible values for "part".
 "bmagic" can be gleened from /proc/cmdline on the device, and "firmware-version" is a 6 sequence
 of 6 numbers seperated with dots, as follows:
 
-[first number of swver].[first digit of hwver].[second digit of hwver].[third digit of hwversion].[second digit of swver].[third digit of swver]
+[first number of swver].[second digit of hwver].[third digit of hwver].[fourth digit of hwversion].[second digit of swver].[third digit of swver]
 
 where "hwver" is the "hwver" from /proc/cmdline on the device, and "swver" is simply a software
 version.
