@@ -1,0 +1,61 @@
+iusutils
+========
+
+These tools are used to handle .ius file, the firmware update format used by InfoTMIC devices. They
+have only been tested under Linux (Ubuntu 11.10 64 bit) but should work fine under any UNIX, and
+probably will work under Cygwin as well.
+
+iusunpack
+=========
+
+Usage: iusunpack [-s] iusfile
+
+This unpacks all components in an ius file. It will dump out .img/.bin files with the content
+of the sub images (like bootkernel.img, system.img, u-boot-nand.bin, etc).
+
+The -s switch will strip off any U-Boot header from the files extracted. This makes it easier to
+e.g. unpack ramdisks and the like. Use the "file" utility on the extracted and stripped files to
+find out what the format is (yaffs2 images get reported as VM Executables on Ubuntu at least).
+
+iuspack
+=======
+
+Usage: iuspack [-o imagefile] [-m bmagic] [-v firmware-version] [part:file...]
+
+This creates an ius file named "imagefile" for a specific target device. It includes the images
+specified in part:file, in the same format as shown in the output of iusunpack. See below for a
+list of possible values for "part".
+
+"bmagic" can be gleened from /proc/cmdline on the device, and "firmware-version" is a 6 sequence
+of 6 numbers seperated with dots, as follows:
+
+[first number of swver].[first digit of hwver].[second digit of hwver].[third digit of hwversion].[second digit of swver].[third digit of swver]
+
+where "hwver" is the "hwver" from /proc/cmdline on the device, and "swver" is simply a software
+version.
+
+NOTE: The hwversion and bmagic values are checked by the bootloader when updating, so these 
+should match, or the update will not be applied!
+
+The options for "part" are:
+	U0:		Device specific first stage u-boot loader
+	UBOOT:		U-Boot core
+	RD:		Normal boot ramdisk
+	RD_:		Recovery ramdisk
+	LK:		Linux kernel
+	NK:		?
+	ADR_SYS:	Uncompressed system partition image
+	ADR_USER:	Userdata partition image
+	NDISK:		?
+	ADR_AS:		GZip compressed system partition image
+
+Easiest is to extract an existing .ius file for your device, and use the output of iusunpack
+to build the commandline for iuspack. You can leave any parts out, the bootloader handles
+updates of zero or more parts perfectly.
+
+NOTE: I advice *not* to flash U0/UBOOT unless you know what you are doing! Normally all you
+need is to flash RD/LK/ADR_SYS/ADR_AS only!
+
+Hope this helps the community in the InfoTMIC hacking!
+
+Ithamar.
