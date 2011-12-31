@@ -81,7 +81,7 @@ main(int argc, char *argv[])
 {
 	off_t size;
 	int fd, ch;
-	void *buf;
+	uint8_t *buf;
 
 	progname = argv[0];
 
@@ -114,9 +114,9 @@ main(int argc, char *argv[])
 		errx(EXIT_FAILURE, "invalid signature");
 
 	{
-		struct ius_header* hdr = buf;
-		struct ius_entry* ent = (buf + sizeof(struct ius_header));
-		long idx;
+		struct ius_header* hdr = (void*)buf;
+		struct ius_entry* ent = (void*)(buf + sizeof(struct ius_header));
+		uint32_t idx;
 
 		printf("Firmware version: %d.%d.%d.%d.%d.%d\n", hdr->swversion >> 16,
 			hdr->hwversion >> 16, (hdr->hwversion >> 8) & 0xff, hdr->hwversion & 0xff,
