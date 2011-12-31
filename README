@@ -5,6 +5,10 @@ These tools are used to handle .ius file, the firmware update format used by Inf
 have only been tested under Linux (Ubuntu 11.10 64 bit) but should work fine under any UNIX, and
 probably will work under Cygwin as well.
 
+To build these tools, have the development package for libz installed, and either use "make" or
+include the repository in your android manifest and run "mmm <dir>" to build from the Android
+build system.
+
 iusunpack
 =========
 
