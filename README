@@ -19,7 +19,7 @@ of the sub images (like bootkernel.img, system.img, u-boot-nand.bin, etc).
 
 The -s switch will strip off any U-Boot header from the files extracted. This makes it easier to
 e.g. unpack ramdisks and the like. Use the "file" utility on the extracted and stripped files to
-find out what the format is (yaffs2 images get reported as VM Executables on Ubuntu at least).
+find out what the format is (yaffs2 images get reported as VMS Alpha executable on Ubuntu at least).
 
 iuspack
 =======
