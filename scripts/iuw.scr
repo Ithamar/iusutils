@@ -1,0 +1,6 @@
+
+--[[uboot.script
+mmc rescan 0
+fatload mmc 0:1 40008000 android/android.ius
+iuw 40008000
+]]

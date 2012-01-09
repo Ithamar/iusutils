@@ -1,0 +1,6 @@
+
+--[[uboot.script
+mmc rescan 0
+fatload mmc 0:1 40200000 program.bin
+go 40200000
+]]

@@ -1,0 +1,8 @@
+
+--[[uboot.script
+mmc rescan 0
+fatload mmc 0:1 40008000 wince/u-boot.img
+adr uboot 40008000
+fatload mmc 0:1 40008004 wince/znk.img
+adr nk 40008004
+]]

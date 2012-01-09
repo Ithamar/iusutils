@@ -21,3 +21,12 @@ LOCAL_MODULE_TAGS := eng
 include $(BUILD_HOST_EXECUTABLE)
 
 $(call dist-for-goals,droid,$(LOCAL_BUILT_MODULE))
+
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := mkbootsd.c
+
+LOCAL_MODULE := mkbootsd
+LOCAL_MODULE_TAGS := eng
+
+include $(BUILD_HOST_EXECUTABLE)

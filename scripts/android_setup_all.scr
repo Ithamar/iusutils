@@ -1,0 +1,20 @@
+
+--[[uboot.script
+mmc rescan 0
+fatload mmc 0:1 40008004 android/u-boot-nand.bin
+adr u0 40008004
+fatload mmc 0:1 40008004 android/uimage
+adr lk 40008004
+fatload mmc 0:1 40008008 android/ramdisk.img
+adr rd 40008008
+fatload mmc 0:1 4000800c android/recovery_rd.img
+adr r0 4000800c
+fatload mmc 0:1 40008010 android/zSYS.img
+adr as 40008010
+setenv filesize 0
+fatload mmc 0:1 40008000 android/system.img
+adr system 40008000
+setenv filesize 0
+fatload mmc 0:1 40008000 android/userdata.img
+adr user 40008000
+]]
